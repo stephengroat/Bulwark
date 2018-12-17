@@ -38,6 +38,9 @@ addons:
     - python3
     - python3-zmq
     - zlib1g-dev
+  homebrew:
+    update: true
+    brewfile: true
 env:
   global:
   - BULWARK_VERSION=2.0.0.0
@@ -131,11 +134,8 @@ matrix:
     - LABEL=macOS
     os: osx
     osx_image: xcode9.2
-before_install:
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
 install:
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew uninstall mercurial python; brew
-  bundle; brew link --overwrite --force boost@1.57; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew uninstall mercurial python; brew link --overwrite --force boost@1.57; fi
 - if [ "$PYZMQ" = "true" ]; then pip install pyzmq --user ; fi
 before_script:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then unset CC CXX DISPLAY; fi
@@ -148,5 +148,3 @@ script:
   --cache-file=config.cache $GLOBAL_CONFIG $BULWARK_CONFIG; make; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sh ./autogen.sh; ./configure --enable-reduce-exports;
   make deploy; fi
-before_deploy:
-- true
