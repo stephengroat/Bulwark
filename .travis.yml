@@ -135,7 +135,7 @@ matrix:
     os: osx
     osx_image: xcode9.2
 install:
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew uninstall mercurial python; brew link --overwrite --force boost@1.57; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew uninstall mercurial python; fi
 - if [ "$PYZMQ" = "true" ]; then pip install pyzmq --user ; fi
 before_script:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then unset CC CXX DISPLAY; fi
