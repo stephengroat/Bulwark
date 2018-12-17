@@ -1,7 +1,7 @@
 brew "autoconf"
 brew "automake"
 brew "berkeley-db@4"
-brew "boost@1.57"
+brew "boost@1.57", link: true
 brew "git"
 brew "libevent"
 brew "libtool"
